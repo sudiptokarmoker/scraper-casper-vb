@@ -30,8 +30,13 @@ casper.start(url_to_scrap[1], function() {
 	
   });
 
+casper.on("page.error", function(msg, trace) {
+    response.write("fail");
+    response.close();
+});
+
   casper.run(function() {
-    response.statusCode = 200;
+    //response.statusCode = 200;
 
     //sends results as JSON object
     response.write(content_page);
