@@ -1,32 +1,29 @@
-var webserver = require('webserver');
-var server = webserver.create();
-var webPage = require('webpage');
-var page = webPage.create();
-var port = require('system').env.PORT || 8080; // default back to 8080
-var service = server.listen(port, function(request, response) {
-  response.statusCode = 200; 
-  var str = request.url;
-    var url_to_scrap = str.split("/?url=");
-    //page.settings.userAgent = 'SpecialAgent';
-	page.open(url_to_scrap[1], function (status) {
-		/*page.evaluate(function() {
-		      var content = page.content;
-			response.write(content);
-			response.close();
-	        });*/
-		if(status == "success"){
-			var content = page.content;
-			response.write(content);
-			response.close();
-		} 
-		else{
-			response.write("fail");
-			response.close();
-		}
-	});
-	// page or error handler //
-	page.onError = function(msg, trace){
-		response.write("fail");
-		response.close();
-	}
+/*var casper = require('casper').create();
+
+casper.start('http://theultralinx.com/2012/10/random-inspiration-51-architecture-cars-girls-style-gear/', function() {
+    this.echo(this.getHTML());
 });
+
+casper.run();*/
+var port = 8080;
+
+var casper = require("casper").create({
+  onRunComplete: function() {
+    // Don't exit on complete.
+  }
+});
+casper.start("http://theultralinx.com/2012/10/random-inspiration-51-architecture-cars-girls-style-gear/");
+casper.run(function() {
+  //console.log("finished");
+});
+
+var pictureNum = 0;
+require("webserver").create().listen(port, function(request, response) {
+  var src = "my_picture_" + (pictureNum++) + ".png";
+  response.writeHead(200, { 'Content-Type': 'text/html' });
+  response.write(this.getHTML());
+  response.close();
+
+  casper.run();
+});
+//console.log("listening on port", port);
