@@ -1,29 +1,41 @@
-/*var casper = require('casper').create();
 
-casper.start('http://theultralinx.com/2012/10/random-inspiration-51-architecture-cars-girls-style-gear/', function() {
-    this.echo(this.getHTML());
+//define ip and port to web service
+//var ip_server = '127.0.0.1:8585';
+
+var ip_server = require('system').env.PORT || 8080; // default back to 8080
+
+//includes web server modules
+var server = require('webserver').create();
+
+//start web server
+var service = server.listen(ip_server, function(request, response) {
+  var links = [];
+  var casper = require('casper').create();
+  var content_page;
+  
+  var str = request.url;
+  var url_to_scrap = str.split("/?url=");
+  
+//console
+
+casper.start(url_to_scrap[1], function() {
+    //this.echo(this.getHTML());
 });
 
-casper.run();*/
-var port = 8080;
+  casper.then(function() {
+    // aggregate results for the 'casperjs' search
+    //links = this.evaluate(getLinks);
+	
+	content_page = this.getHTML();
+	
+  });
 
-var casper = require("casper").create({
-  onRunComplete: function() {
-    // Don't exit on complete.
-  }
-});
-casper.start("http://theultralinx.com/2012/10/random-inspiration-51-architecture-cars-girls-style-gear/");
-casper.run(function() {
-  //console.log("finished");
-});
+  casper.run(function() {
+    response.statusCode = 200;
 
-var pictureNum = 0;
-require("webserver").create().listen(port, function(request, response) {
-  var src = "my_picture_" + (pictureNum++) + ".png";
-  response.writeHead(200, { 'Content-Type': 'text/html' });
-  response.write(this.getHTML());
-  response.close();
-
-  casper.run();
+    //sends results as JSON object
+    response.write(content_page);
+    response.close();
+  });
 });
-//console.log("listening on port", port);
+//console.log('Server running at http://' + ip_server+'/');
