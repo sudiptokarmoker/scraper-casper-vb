@@ -1,1 +1,1 @@
-web: slimerjs scraper.js
+web: casperjs scraper.js
