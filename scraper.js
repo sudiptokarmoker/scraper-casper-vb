@@ -56,10 +56,11 @@ casper.start(url_to_scrap[1], function() {
     //this.exit();
   });
   
+  /*
   casper.on('run.complete', function() {
         //this.echo('Test completed');
         this.exit();
-  });
+  });*/
   
 });
 //console.log('Server running at http://' + ip_server+'/');
