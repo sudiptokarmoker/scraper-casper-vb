@@ -13,14 +13,13 @@ var service = server.listen(ip_server, function(request, response) {
   //var casper = require('casper').create();
   
   
-  var casper = require('casper').create({ 
+var casper = require('casper').create({
     pageSettings: {
-    	//javascriptEnabled: false,
-        loadImages:  false,
-        loadPlugins: false
+        loadImages:  false,        // The WebPage instance used by Casper will
+        loadPlugins: false         // use these settings
     },
-    verbose: true,
-    logLevel: 'debug'
+    logLevel: "info",              // Only "info" level messages will be logged
+    verbose: true                  // log messages will be printed out to the console
 });
   
   
