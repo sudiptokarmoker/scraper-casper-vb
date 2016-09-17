@@ -21,9 +21,9 @@ var service = server.listen(ip_server, function(request, response) {
 casper.start(url_to_scrap[1], function() {
     //this.echo(this.getHTML());
     response.write(this.getHTML());
-    response.close();
+    //response.close();
 });
-
+casper.userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X)');
 
 
   casper.on("page.error", function(msg, trace) {
