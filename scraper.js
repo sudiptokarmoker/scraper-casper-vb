@@ -48,12 +48,18 @@ casper.start(url_to_scrap[1], function() {
 });
 
   casper.run(function() {
-    response.statusCode = 200;
+    //response.statusCode = 200;
 
     //sends results as JSON object
     response.write(content_page);
     response.close();
-    this.exit();
+    //this.exit();
   });
+  
+  casper.on('run.complete', function() {
+        //this.echo('Test completed');
+        this.exit();
+  });
+  
 });
 //console.log('Server running at http://' + ip_server+'/');
