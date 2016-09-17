@@ -1,7 +1,7 @@
 
 //define ip and port to web service
 //var ip_server = '127.0.0.1:8585';
-casper.exit();
+//casper.exit();
 
 var ip_server = require('system').env.PORT || 8080; // default back to 8080
 
@@ -65,3 +65,4 @@ casper.start(url_to_scrap[1], function() {
   
 });
 //console.log('Server running at http://' + ip_server+'/');
+casper.exit();
