@@ -10,9 +10,9 @@ var server = require('webserver').create();
 //start web server
 var service = server.listen(ip_server, function(request, response) {
   var links = [];
-  //var casper = require('casper').create();
+  var casper = require('casper').create();
   
-  
+ /* 
 var casper = require('casper').create({
     pageSettings: {
         loadImages:  false,        // The WebPage instance used by Casper will
@@ -21,7 +21,7 @@ var casper = require('casper').create({
     logLevel: "info",              // Only "info" level messages will be logged
     verbose: true                  // log messages will be printed out to the console
 });
-  
+  */
   
   var content_page;
   
