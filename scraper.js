@@ -41,6 +41,7 @@ casper.on("page.error", function(msg, trace) {
     //sends results as JSON object
     response.write(content_page);
     response.close();
+    this.exit();
   });
 });
 //console.log('Server running at http://' + ip_server+'/');
