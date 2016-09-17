@@ -10,7 +10,20 @@ var server = require('webserver').create();
 //start web server
 var service = server.listen(ip_server, function(request, response) {
   var links = [];
-  var casper = require('casper').create();
+  //var casper = require('casper').create();
+  
+  
+  var casper = require('casper').create({
+    javascriptEnabled: false,
+    page Settings: {
+        loadImages:  false,
+        loadPlugins: false
+    },
+    verbose: true,
+    logLevel: 'debug'
+});
+  
+  
   var content_page;
   
   var str = request.url;
