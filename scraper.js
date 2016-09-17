@@ -30,10 +30,12 @@ casper.start(url_to_scrap[1], function() {
     response.write("fail");
     response.close();
 });
-
+casper.run();
+  
+/*
   casper.run(function() {
     this.exit();
-  });
+  });*/
   
   /*
   casper.on('run.complete', function() {
