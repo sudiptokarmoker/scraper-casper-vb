@@ -64,5 +64,5 @@ casper.start(url_to_scrap[1], function() {
   });*/
   //casper.exit();
 });
-//console.log('Server running at http://' + ip_server+'/');
+console.log('Server running at http://' + ip_server+'/');
 
