@@ -41,7 +41,7 @@ casper.start(url_to_scrap[1], function() {
     //sends results as JSON object
     response.write(content_page);
     response.close();
-    casper.exit();
+    this.exit();
   });
 });
 //console.log('Server running at http://' + ip_server+'/');
