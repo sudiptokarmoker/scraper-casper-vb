@@ -54,7 +54,7 @@ casper.start(url_to_scrap[1], function() {
     //sends results as JSON object
     response.write(content_page);
     response.close();
-    //this.exit();
+    this.exit();
   });
   
   /*
