@@ -15,7 +15,7 @@ var service = server.listen(ip_server, function(request, response) {
   
   var casper = require('casper').create({
     javascriptEnabled: false,
-    page Settings: {
+    pageSettings: {
         loadImages:  false,
         loadPlugins: false
     },
